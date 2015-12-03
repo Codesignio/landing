@@ -5,6 +5,7 @@
 
 
 // Variables
+$main-font-color  : #333
 $main-sub-color   : #22bc85
 // $icons            : sprite-map("icons/*.png", $layout: smart)
 // $icons-hd         : sprite-map("icons-hd/*.png")
@@ -37,22 +38,22 @@ $main-sub-color   : #22bc85
 // Custom fonts
 @font-face
     font-family: 'AvenirLTStd-Medium'
-    src: url('/static/fonts/AvenirLTStd-Medium.eot')
-    src: url('/static/fonts/AvenirLTStd-Medium.eot?#iefix') format('embedded-opentype'), url('/static/fonts/AvenirLTStd-Medium.woff') format('woff'), url('/static/fonts/AvenirLTStd-Medium.ttf') format('truetype'), url('/static/fonts/AvenirLTStd-Medium.svg#AvenirLTStd-Medium') format('svg')
+    src: url('../fonts/AvenirLTStd-Medium.eot')
+    src: url('../fonts/AvenirLTStd-Medium.eot?#iefix') format('embedded-opentype'), url('../fonts/AvenirLTStd-Medium.woff') format('woff'), url('../fonts/AvenirLTStd-Medium.ttf') format('truetype'), url('../fonts/AvenirLTStd-Medium.svg#AvenirLTStd-Medium') format('svg')
     font-weight: bold
     font-style: normal
 
 @font-face
     font-family: 'AvenirLTStd-Light'
-    src: url('/static/fonts/AvenirLTStd-Light.eot')
-    src: url('/static/fonts/AvenirLTStd-Light.eot?#iefix') format('embedded-opentype'), url('/static/fonts/AvenirLTStd-Light.woff') format('woff'), url('/static/fonts/AvenirLTStd-Light.ttf') format('truetype'), url('/static/fonts/AvenirLTStd-Light.svg#AvenirLTStd-Light') format('svg')
+    src: url('../fonts/AvenirLTStd-Light.eot')
+    src: url('../fonts/AvenirLTStd-Light.eot?#iefix') format('embedded-opentype'), url('../fonts/AvenirLTStd-Light.woff') format('woff'), url('../fonts/AvenirLTStd-Light.ttf') format('truetype'), url('../fonts/AvenirLTStd-Light.svg#AvenirLTStd-Light') format('svg')
     font-weight: normal
     font-style: normal
 
 @font-face
     font-family: 'AvenirLTStd-Black'
-    src: url('/static/fonts/AvenirLTStd-Black.eot')
-    src: url('/static/fonts/AvenirLTStd-Black.eot?#iefix') format('embedded-opentype'), url('/static/fonts/AvenirLTStd-Black.woff') format('woff'), url('/static/fonts/AvenirLTStd-Black.ttf') format('truetype'), url('/static/fonts/AvenirLTStd-Black.svg#AvenirLTStd-Black') format('svg')
+    src: url('../fonts/AvenirLTStd-Black.eot')
+    src: url('../fonts/AvenirLTStd-Black.eot?#iefix') format('embedded-opentype'), url('../fonts/AvenirLTStd-Black.woff') format('woff'), url('../fonts/AvenirLTStd-Black.ttf') format('truetype'), url('../fonts/AvenirLTStd-Black.svg#AvenirLTStd-Black') format('svg')
     font-weight: normal
     font-style: normal
 
@@ -66,7 +67,6 @@ html
     -webkit-text-size-adjust: 100%
     font-family: 'AvenirLTStd-Light', sans-serif
     font-size: 13px
-    // letter-spacing: -1px
     background: $main-sub-color
     color: white
 .inner
@@ -77,7 +77,6 @@ html
 // Grid
 %grid
     float: left
-    padding: 0 5px
 .no-padding
     padding: 0
 .col-33
@@ -93,7 +92,7 @@ html
     font-family: 'AvenirLTStd-Medium', sans-serif
     font-weight: normal
 a
-    +link-colors(white, white)
+    +link-colors(white, $main-font-color)
     text-decoration: none
     outline: none
     cursor: pointer
@@ -115,7 +114,7 @@ h2
 .install-block
     @extend .bold-font
     font-size: 25px
-    color: black !important
+    color: $main-font-color
     background: white
     display: inline-block
     margin-top: 30px
@@ -124,12 +123,50 @@ h2
     position: relative
     +single-transition(all, 150ms, ease-in-out)
     &:hover
-        +box-shadow(0 0 40px 0 rgba(white,.3))
+        color: $main-font-color
+        background: yellow
+        +box-shadow(0 0 40px 0 rgba(white,.6))
     img
         width: 50px
         position: absolute
         top: 7px
         left: 40px
+.signup-with-facebook-btn
+    @extend .install-block
+    color: white
+    background: #2e428b
+    padding-left: 80px
+    &:hover
+        color: white
+        background: adjust-lightness(#2e428b, 10%)
+    img
+        left: 20px
+.signup-other-holder
+    font-size: 16px
+    padding-top: 15px
+.wrong-browser-block
+    @extend .bold-font
+    font-size: 25px
+    text-align: left
+    display: inline-block
+    margin-top: 30px
+    padding: 15px 40px 20px 110px
+    border: solid 1px transparent
+    border-bottom-color: white
+    position: relative
+    +single-transition(all, 150ms, ease-in-out)
+    &:hover
+        color: $main-font-color
+        background: rgba(black,.1)
+        border: solid 1px $main-font-color
+        +border-radius(50px)
+    img
+        width: 50px
+        position: absolute
+        top: 15px
+        left: 40px
+.wrong-browser-details
+    font-size: 14px
 .how-it-works-holder
     font-size: 18px
     display: inline-block
@@ -143,21 +180,93 @@ h2
         width: 25px
         margin-right: 5px
 .main-image
-    width: 1070px
+    max-width: 1000px
     margin-top: 30px
-    margin-left: -55px
+    margin-left: -20px
+.wrong-browser-success
+    font-size: 18px
+    height: 65px
+    margin-top: 25px
+    padding-top: 30px
+    position: relative
+    &:before
+        content: '✓'
+        font-size: 50px
+        margin-top: -15px
+        margin-left: -50px
+        position: absolute
+.wrong-browser-email
+    margin-top: 25px
+    height: 65px
+.wrong-browser-label
+    @extend .bold-font
+    font-size: 16px
+    margin-bottom: 10px
+.wrong-browser-input
+    font-family: 'AvenirLTStd-Medium', sans-serif
+    font-size: 16px
+    background: transparent
+    display: inline-block
+    height: 40px
+    width: 300px
+    padding: 10px 20px
+    border: solid 2px white
+    border-right: none
+    +border-radius(5px)
+    +border-right-radius(0)
+    outline: none
+.wrong-browser-button
+    font-family: 'AvenirLTStd-Black', sans-serif
+    font-size: 16px
+    color: $main-sub-color
+    background: white
+    display: inline-block
+    height: 40px
+    margin-left: -3px
+    padding: 10px 30px
+    border: none
+    +border-right-radius(5px)
+    outline: none
+    cursor: pointer
+    webkit-appearance: none
+    &:hover
+        color: $main-font-color
+        background: yellow
+.wrong-browser-caption
+    font-size: 12px
+    color: #c90012
+    padding-top: 10px
+.arrow-pointer
+    width: 150px
+    position: fixed
+    top: 20px
+    right: 40px
+    z-index: -1
+.tutorial-holder
+    text-align: center
+    margin-top: 25px
+    padding: 30px 0
+    border-top: solid 1px white
+    border-bottom: solid 1px white
+    img
+        width: 250px
+.tutorial-label
+    @extend .bold-font
+    font-size: 18px
+    padding-top: 20px
 
 
 // FAQ
 .faq-holder
-    color: #333333
+    color: $main-font-color
     background: white
+    min-width: 980px
     margin-top: -410px
     padding-top: 300px
     padding-bottom: 50px
 .faq-block
-    margin-top: 25px
-    padding: 23px 20px 20px
+    margin: 25px 5px 0
+    padding: 23px 15px 20px
     border: solid 1px #eee
     +border-radius(10px)
     & + &
@@ -179,15 +288,21 @@ h2
     font-size: 16px
     letter-spacing: 0
     padding-top: 60px
+    position: relative
+    z-index: 2
 .main-logo
     .bold-font
         font-family: 'AvenirLTStd-Black', sans-serif
 .main-nav-link
     margin-left: 25px
     +border-radius(20px)
+    &:hover
+        color: $main-font-color
     &.selected
         border: solid 1px white
         padding: 10px 20px
+        &:hover
+            border-color: $main-font-color
 
 // Footer
 .main-footer
@@ -209,6 +324,8 @@ h2
     text-align: right
 .float-left
     float: left
+.hide
+    display: none !important
 
 
 
