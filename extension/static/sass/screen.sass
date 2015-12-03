@@ -1,0 +1,216 @@
+// Imports
+@import "compass/reset"
+@import "compass/css3/user-interface"
+@import "compass"
+
+
+// Variables
+$main-sub-color   : #22bc85
+// $icons            : sprite-map("icons/*.png", $layout: smart)
+// $icons-hd         : sprite-map("icons-hd/*.png")
+
+
+// Mixins
+@mixin retina($image_name, $w: auto, $h: auto, $extention: '.png') // Usage: +retina('cream_pixels', 160px, 160px)
+    background-image: image_url($image_name + $extention)
+    $x2img: $image_name + '@2x' + $extention
+    @media all and (-webkit-min-device-pixel-ratio: 1.5)
+        background-image: image_url($x2img)
+        background-size: $w $h
+
+// Icons
+// i
+//     background: $icons
+//     display: inline-block
+//     @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)
+//         background: $icons-hd
+//         +background-size(image-width(sprite-path($icons)) auto)
+// @each $icon in sprite_names($icons)
+//     .icn-#{$icon}
+//         +sprite-dimensions($icons, $icon)
+//         background-position: sprite-position($icons, $icon)
+//         @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)
+//             $offset: nth(sprite-position($icons-hd, $icon), 2) / 2
+//             background-position: 0 $offset
+
+
+// Custom fonts
+@font-face
+    font-family: 'AvenirLTStd-Medium'
+    src: url('/static/fonts/AvenirLTStd-Medium.eot')
+    src: url('/static/fonts/AvenirLTStd-Medium.eot?#iefix') format('embedded-opentype'), url('/static/fonts/AvenirLTStd-Medium.woff') format('woff'), url('/static/fonts/AvenirLTStd-Medium.ttf') format('truetype'), url('/static/fonts/AvenirLTStd-Medium.svg#AvenirLTStd-Medium') format('svg')
+    font-weight: bold
+    font-style: normal
+
+@font-face
+    font-family: 'AvenirLTStd-Light'
+    src: url('/static/fonts/AvenirLTStd-Light.eot')
+    src: url('/static/fonts/AvenirLTStd-Light.eot?#iefix') format('embedded-opentype'), url('/static/fonts/AvenirLTStd-Light.woff') format('woff'), url('/static/fonts/AvenirLTStd-Light.ttf') format('truetype'), url('/static/fonts/AvenirLTStd-Light.svg#AvenirLTStd-Light') format('svg')
+    font-weight: normal
+    font-style: normal
+
+@font-face
+    font-family: 'AvenirLTStd-Black'
+    src: url('/static/fonts/AvenirLTStd-Black.eot')
+    src: url('/static/fonts/AvenirLTStd-Black.eot?#iefix') format('embedded-opentype'), url('/static/fonts/AvenirLTStd-Black.woff') format('woff'), url('/static/fonts/AvenirLTStd-Black.ttf') format('truetype'), url('/static/fonts/AvenirLTStd-Black.svg#AvenirLTStd-Black') format('svg')
+    font-weight: normal
+    font-style: normal
+
+
+
+// Basic styles
+*
+    +box-sizing(border-box)
+html
+    -webkit-font-smoothing: antialiased
+    -webkit-text-size-adjust: 100%
+    font-family: 'AvenirLTStd-Light', sans-serif
+    font-size: 13px
+    // letter-spacing: -1px
+    background: $main-sub-color
+    color: white
+.inner
+    width: 960px
+    margin: 0 auto
+
+
+// Grid
+%grid
+    float: left
+    padding: 0 5px
+.no-padding
+    padding: 0
+.col-33
+    @extend %grid
+    width: 33%
+.col-50
+    @extend %grid
+    width: 50%
+
+
+// Text styles
+.bold-font
+    font-family: 'AvenirLTStd-Medium', sans-serif
+    font-weight: normal
+a
+    +link-colors(white, white)
+    text-decoration: none
+    outline: none
+    cursor: pointer
+.green-link
+    +link-colors($main-sub-color, adjust-lightness($main-sub-color, -10%))
+
+h1
+    font-size: 55px
+    padding-top: 100px
+h2
+    font-size: 30px
+    line-height: 1.2em
+    padding-top: 10px
+
+
+// Main styles
+.content
+    padding-bottom: 75px
+.install-block
+    @extend .bold-font
+    font-size: 25px
+    color: black !important
+    background: white
+    display: inline-block
+    margin-top: 30px
+    padding: 20px 40px 20px 110px
+    +border-radius(50px)
+    position: relative
+    +single-transition(all, 150ms, ease-in-out)
+    &:hover
+        +box-shadow(0 0 40px 0 rgba(white,.3))
+    img
+        width: 50px
+        position: absolute
+        top: 7px
+        left: 40px
+.how-it-works-holder
+    font-size: 18px
+    display: inline-block
+    padding-top: 25px
+    cursor: pointer
+    +opacity(.85)
+    &:hover
+        +opacity(1)
+    img
+        vertical-align: middle
+        width: 25px
+        margin-right: 5px
+.main-image
+    width: 1070px
+    margin-top: 30px
+    margin-left: -55px
+
+
+// FAQ
+.faq-holder
+    color: #333333
+    background: white
+    margin-top: -410px
+    padding-top: 300px
+    padding-bottom: 50px
+.faq-block
+    margin-top: 25px
+    padding: 23px 20px 20px
+    border: solid 1px #eee
+    +border-radius(10px)
+    & + &
+        margin-top: 10px
+.faq-q
+    @extend .bold-font
+    font-size: 25px
+    line-height: 1.2em
+.faq-a
+    font-size: 16px
+    line-height: 1.3em
+    color: #484848
+    display: block
+    padding-top: 10px
+
+
+// Header
+.main-header
+    font-size: 16px
+    letter-spacing: 0
+    padding-top: 60px
+.main-logo
+    .bold-font
+        font-family: 'AvenirLTStd-Black', sans-serif
+.main-nav-link
+    margin-left: 25px
+    +border-radius(20px)
+    &.selected
+        border: solid 1px white
+        padding: 10px 20px
+
+// Footer
+.main-footer
+    font-size: 16px
+    padding: 20px 0
+.footer-link
+    margin: 0 10px
+
+
+// Helpers
+%group, .group
+    &:after
+        content: ''
+        display: table
+        clear: both
+.align-center
+    text-align: center
+.align-right
+    text-align: right
+.float-left
+    float: left
+
+
+
+
+
